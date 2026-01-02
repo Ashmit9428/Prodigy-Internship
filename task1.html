@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 01: Interactive Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; font-family: 'Poppins', sans-serif; height: 2000px; background: #f4f4f4; }
+        
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background-color: transparent;
+            transition: all 0.4s ease;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        #navbar ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        #navbar li { margin: 0 15px; }
+        
+        #navbar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        #navbar a:hover {
+            background-color: #ff5722;
+            color: white;
+        }
+
+        #navbar.scrolled {
+            background-color: #222;
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        #navbar.scrolled a { color: white; }
+        #navbar.scrolled a:hover { background-color: #ff5722; }
+
+        .content { padding: 100px 20px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>Scroll Down to See the Effect</h1>
+        <p>The menu is transparent at the top but turns dark when you scroll.</p>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
