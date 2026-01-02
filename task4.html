@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 04: Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; font-family: 'Poppins', sans-serif; color: #333; line-height: 1.6; }
+        header { background: #333; color: #fff; padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: auto; padding: 0 20px; }
+        .logo { font-size: 1.5rem; font-weight: 600; }
+        nav ul { list-style: none; display: flex; padding: 0; }
+        nav ul li { margin-left: 20px; }
+        nav a { color: #fff; text-decoration: none; font-weight: 400; transition: color 0.3s; }
+        nav a:hover { color: #ff5722; }
+        section { padding: 80px 20px; max-width: 1100px; margin: auto; }
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #f4f4f4; margin-top: 0; }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; color: #666; margin-bottom: 20px; }
+        .btn { display: inline-block; background: #ff5722; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; }
+        .skill-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        footer { background: #333; color: white; text-align: center; padding: 20px 0; margin-top: 40px; }
+        @media(max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">MyPortfolio</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Hello, I'm a Web Developer</h1>
+        <p>Building attractive and interactive web experiences.</p>
+        <a href="#about" class="btn">View My Work</a>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-grid">
+            <div>
+                <img src="https://via.placeholder.com/400" alt="Profile" style="width: 100%; border-radius: 10px;">
+            </div>
+            <div>
+                <h3>Who am I?</h3>
+                <p>I am a passionate web developer with a strong background in creating responsive and user-friendly websites. I love solving complex problems and learning new technologies to build better digital products.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>HTML & CSS</h3>
+                <p>Structuring and styling responsive web pages.</p>
+            </div>
+            <div class="skill-card">
+                <h3>JavaScript</h3>
+                <p>Adding interactivity and dynamic logic.</p>
+            </div>
+            <div class="skill-card">
+                <h3>React</h3>
+                <p>Building component-based user interfaces.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 MyPortfolio. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
