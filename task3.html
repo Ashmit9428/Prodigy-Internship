@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 03: Tic-Tac-Toe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; display: flex; flex-direction: column; align-items: center; margin-top: 50px; background-color: #e0e0e0; }
+        h1 { margin-bottom: 10px; font-weight: 600; }
+        #status { margin-bottom: 20px; font-size: 1.2rem; font-weight: 600; }
+        .board { display: grid; grid-template-columns: repeat(3, 100px); gap: 5px; }
+        .cell {
+            width: 100px; height: 100px; background: white;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 3rem; font-weight: 600; cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .cell:hover { background: #f9f9f9; }
+        .cell.taken { cursor: not-allowed; color: #555; }
+        .win { background-color: #d4edda; color: #155724; }
+        button { margin-top: 20px; padding: 10px 20px; font-size: 1rem; cursor: pointer; font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body>
+
+    <h1>Tic-Tac-Toe</h1>
+    <div id="status">Player X's Turn</div>
+    <div class="board" id="board"></div>
+    <button onclick="resetGame()">Restart Game</button>
+
+    <script>
+        const boardElement = document.getElementById('board');
+        const statusElement = document.getElementById('status');
+        let currentPlayer = 'X';
+        let gameActive = true;
+        let gameState = ["", "", "", "", "", "", "", "", ""];
+
+        const winningConditions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+
+        function createBoard() {
+            boardElement.innerHTML = "";
+            gameState.forEach((cell, index) => {
+                const cellElement = document.createElement('div');
+                cellElement.classList.add('cell');
+                cellElement.setAttribute('data-index', index);
+                cellElement.addEventListener('click', handleCellClick);
+                boardElement.appendChild(cellElement);
+            });
+        }
+
+        function handleCellClick(e) {
+            const clickedCell = e.target;
+            const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index'));
+
+            if (gameState[clickedCellIndex] !== "" || !gameActive) return;
+
+            gameState[clickedCellIndex] = currentPlayer;
+            clickedCell.innerText = currentPlayer;
+            clickedCell.classList.add('taken');
+
+            checkResult();
+        }
+
+        function checkResult() {
+            let roundWon = false;
+            let winningLine = [];
+
+            for (let i = 0; i <= 7; i++) {
+                const winCondition = winningConditions[i];
+                let a = gameState[winCondition[0]];
+                let b = gameState[winCondition[1]];
+                let c = gameState[winCondition[2]];
+
+                if (a === '' || b === '' || c === '') continue;
+                if (a === b && b === c) {
+                    roundWon = true;
+                    winningLine = winCondition;
+                    break;
+                }
+            }
+
+            if (roundWon) {
+                statusElement.innerText = `Player ${currentPlayer} Wins!`;
+                gameActive = false;
+                highlightWinner(winningLine);
+                return;
+            }
+
+            if (!gameState.includes("")) {
+                statusElement.innerText = "It's a Draw!";
+                gameActive = false;
+                return;
+            }
+
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+            statusElement.innerText = `Player ${currentPlayer}'s Turn`;
+        }
+
+        function highlightWinner(indices) {
+            const cells = document.querySelectorAll('.cell');
+            indices.forEach(index => cells[index].classList.add('win'));
+        }
+
+        function resetGame() {
+            currentPlayer = 'X';
+            gameActive = true;
+            gameState = ["", "", "", "", "", "", "", "", ""];
+            statusElement.innerText = "Player X's Turn";
+            createBoard();
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>
